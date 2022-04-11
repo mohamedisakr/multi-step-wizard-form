@@ -19,7 +19,11 @@ export const Step3 = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <label htmlFor="cheese">Pick cheese:</label>
-        <select id="cheese" name="cheese" ref={register}>
+        <select
+          id="cheese"
+          name="cheese"
+          {...register("cheese", { required: true })}
+        >
           <option value="no_cheese">No Cheese</option>
           <option value="mozarella">Mozarella</option>
           <option value="parmigiano">Parmigiano</option>
