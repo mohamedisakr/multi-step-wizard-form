@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { chooseSauce } from "./rootSlice";
+import { chooseEmail } from "./rootSlice";
 
 export const Step4 = () => {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ export const Step4 = () => {
   const { register, handleSubmit } = useForm({ defaultValues: { sauce } });
 
   const onSubmit = (data) => {
-    dispatch(chooseSauce(data.sauce));
+    dispatch(chooseEmail(data.sauce));
     navigate("/result");
   };
 

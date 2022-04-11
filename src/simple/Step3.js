@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { chooseCheese } from "../rootSlice";
+import { choosePassword } from "../rootSlice";
 
 export const Step3 = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ export const Step3 = () => {
   } = useForm({ mode: "onBlur", defaultValues: { cheese } });
 
   const onSubmit = (data) => {
-    dispatch(chooseCheese(data.cheese));
+    dispatch(choosePassword(data.cheese));
     navigate("/result");
   };
 

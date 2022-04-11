@@ -2,21 +2,26 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { chooseBase } from "../rootSlice";
+import { chooseFirstName, chooseLastName } from "../rootSlice";
 
 export const Step1 = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const base = useSelector((state) => state.base);
+  const firstName = useSelector((state) => state.firstName);
+  const lastName = useSelector((state) => state.lastName);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: "onBlur", defaultValues: {} });
+  } = useForm({ mode: "onBlur", defaultValues: {} }); // firstName, lastName
 
   const onSubmit = (data) => {
-    dispatch(chooseBase(data.base));
-    navigate("./step2");
+    console.log(data);
+
+    dispatch(chooseFirstName(data.firstName));
+    dispatch(chooseLastName(data.lastName));
+    navigate("/step2");
   };
 
   return (
@@ -25,24 +30,24 @@ export const Step1 = () => {
         type="text"
         id="firstName"
         name="firstName"
-        {...register("firstName")}
+        {...register("firstName", { required: "First name is required" })}
         className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
         placeholder="First Name *"
       />
       <span className="text-sm text-left text-red-700">
-        {errors.name?.message}
+        {errors.firstName?.message}
       </span>
 
       <input
         type="text"
         id="lastName"
         name="lastName"
-        {...register("lastName")}
+        {...register("lastName", { required: "Last name is required" })}
         className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
         placeholder="Last Name *"
       />
       <span className="text-sm text-left text-red-700">
-        {errors.name?.message}
+        {errors.lastName?.message}
       </span>
 
       <button>Next</button>

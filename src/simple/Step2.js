@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { chooseCrust } from "../rootSlice";
+import { chooseLastName } from "../rootSlice";
 
 export const Step2 = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ export const Step2 = () => {
   } = useForm({ mode: "onBlur", defaultValues: { crust } });
 
   const onSubmit = (data) => {
-    dispatch(chooseCrust(data.crust));
+    dispatch(chooseLastName(data.crust));
     navigate("/step3");
   };
 
