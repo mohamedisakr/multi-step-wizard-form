@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+.text-sm {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.25rem; /* 20px */
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-red-700 {
+  color: rgb(185 28 28);
+}
