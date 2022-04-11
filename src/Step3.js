@@ -12,7 +12,7 @@ export const Step3 = () => {
 
   const onSubmit = (data) => {
     dispatch(chooseCheese(data.cheese));
-    navigate("./step4");
+    navigate("/step4");
   };
 
   return (

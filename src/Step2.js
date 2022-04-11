@@ -12,7 +12,7 @@ export const Step2 = () => {
 
   const onSubmit = (data) => {
     dispatch(chooseCrust(data.crust));
-    navigate("./step3");
+    navigate("/step3");
   };
 
   return (
