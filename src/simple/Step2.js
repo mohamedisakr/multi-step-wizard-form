@@ -20,19 +20,31 @@ export const Step2 = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        {...register("email", { required: "Email is required" })}
-        className="px-4 py-3 mt-4 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
-        placeholder="Email address *"
-      />
-      <span className="text-sm text-left text-red-700">
-        {errors.email?.message}
-      </span>
-      <button>Next</button>
-    </form>
+    <div className="card">
+      <div className="card-body">
+        <h5 className="card-title">First and Last Name</h5>
+        <div className="card-body">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="form-outline mb-4">
+              <label className="form-label" htmlFor="email">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                {...register("email", { required: "Email is required" })}
+                className="form-control"
+                placeholder="Email address *"
+              />
+            </div>
+            <span className="text-sm text-left text-red-700">
+              {errors.email?.message}
+            </span>
+            <button className="btn btn-primary btn-block mb-4">Next</button>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 };
