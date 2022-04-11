@@ -6,14 +6,12 @@ import { chooseBase } from "./rootSlice";
 
 export const Step1 = () => {
   const dispatch = useDispatch();
-  //   const history = useNavigate();
   const navigate = useNavigate();
   const base = useSelector((state) => state.base);
   const { register, handleSubmit } = useForm({ defaultValues: { base } });
 
   const onSubmit = (data) => {
     dispatch(chooseBase(data.base));
-    // history.push("./step2");
     navigate("./step2");
   };
 

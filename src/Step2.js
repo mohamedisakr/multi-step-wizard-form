@@ -1,18 +1,18 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { chooseCrust } from "./rootSlice";
 
 export const Step2 = () => {
   const dispatch = useDispatch();
-  const history = useHistory()
-  const crust = useSelector(state => state.crust)
-  const { register, handleSubmit } = useForm({defaultValues: {crust}});
+  const navigate = useNavigate();
+  const crust = useSelector((state) => state.crust);
+  const { register, handleSubmit } = useForm({ defaultValues: { crust } });
 
   const onSubmit = (data) => {
     dispatch(chooseCrust(data.crust));
-    history.push("./step3");
+    navigate("./step3");
   };
 
   return (
