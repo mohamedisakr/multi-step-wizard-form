@@ -14,7 +14,7 @@ export const Step1 = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: "onBlur", defaultValues: {} }); // firstName, lastName
+  } = useForm({ mode: "onBlur", defaultValues: { firstName, lastName } }); //
 
   const onSubmit = (data) => {
     console.log(data);
