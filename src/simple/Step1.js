@@ -17,40 +17,60 @@ export const Step1 = () => {
   } = useForm({ mode: "onBlur", defaultValues: { firstName, lastName } }); //
 
   const onSubmit = (data) => {
-    console.log(data);
-
     dispatch(chooseFirstName(data.firstName));
     dispatch(chooseLastName(data.lastName));
     navigate("/step2");
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col mt-4">
-      <input
-        type="text"
-        id="firstName"
-        name="firstName"
-        {...register("firstName", { required: "First name is required" })}
-        className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
-        placeholder="First Name *"
-      />
-      <span className="text-sm text-left text-red-700">
-        {errors.firstName?.message}
-      </span>
+    <div className="card">
+      <div className="card-body">
+        <h5 className="card-title">First and Last Name</h5>
+        <div className="card-body">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="d-flex flex-column mt-4"
+          >
+            <div className="form-outline mb-4">
+              <label className="form-label" htmlFor="firstName">
+                First Name
+              </label>
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                {...register("firstName", {
+                  required: "First name is required",
+                })}
+                className="form-control"
+                placeholder="First Name *"
+              />
+            </div>
+            <span className="text-sm text-left text-red-700">
+              {errors.firstName?.message}
+            </span>
 
-      <input
-        type="text"
-        id="lastName"
-        name="lastName"
-        {...register("lastName", { required: "Last name is required" })}
-        className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
-        placeholder="Last Name *"
-      />
-      <span className="text-sm text-left text-red-700">
-        {errors.lastName?.message}
-      </span>
+            <div className="form-outline mb-4">
+              <label className="form-label" htmlFor="lastName">
+                Last Name
+              </label>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                {...register("lastName", { required: "Last name is required" })}
+                className="form-control"
+                placeholder="Last Name *"
+              />
+            </div>
+            <span className="text-sm text-left text-red-700">
+              {errors.lastName?.message}
+            </span>
 
-      <button>Next</button>
-    </form>
+            <button className="btn btn-primary btn-block mb-4">Next</button>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 };
