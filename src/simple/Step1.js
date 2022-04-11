@@ -24,52 +24,50 @@ export const Step1 = () => {
 
   return (
     <div className="card">
+      <h5 className="card-title">First and Last Name</h5>
       <div className="card-body">
-        <h5 className="card-title">First and Last Name</h5>
-        <div className="card-body">
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="d-flex flex-column mt-4"
-          >
-            <div className="form-outline mb-4">
-              <label className="form-label" htmlFor="firstName">
-                First Name
-              </label>
-              <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                {...register("firstName", {
-                  required: "First name is required",
-                })}
-                className="form-control"
-                placeholder="First Name *"
-              />
-            </div>
-            <span className="text-sm text-left text-red-700">
-              {errors.firstName?.message}
-            </span>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="d-flex flex-column mt-4"
+        >
+          <div className="form-outline mb-4">
+            <label className="form-label" htmlFor="firstName">
+              First Name
+            </label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              {...register("firstName", {
+                required: "First name is required",
+              })}
+              className="form-control"
+              placeholder="First Name *"
+            />
+          </div>
+          <span className="text-sm text-left text-red-700">
+            {errors.firstName?.message}
+          </span>
 
-            <div className="form-outline mb-4">
-              <label className="form-label" htmlFor="lastName">
-                Last Name
-              </label>
-              <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                {...register("lastName", { required: "Last name is required" })}
-                className="form-control"
-                placeholder="Last Name *"
-              />
-            </div>
-            <span className="text-sm text-left text-red-700">
-              {errors.lastName?.message}
-            </span>
+          <div className="form-outline mb-4">
+            <label className="form-label" htmlFor="lastName">
+              Last Name
+            </label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              {...register("lastName", { required: "Last name is required" })}
+              className="form-control"
+              placeholder="Last Name *"
+            />
+          </div>
+          <span className="text-sm text-left text-red-700">
+            {errors.lastName?.message}
+          </span>
 
-            <button className="btn btn-primary btn-block mb-4">Next</button>
-          </form>
-        </div>
+          <button className="btn btn-primary btn-block mb-4">Next</button>
+        </form>
       </div>
     </div>
   );

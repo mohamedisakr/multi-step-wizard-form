@@ -21,20 +21,25 @@ export const Step3 = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        data-testid="password"
-        {...register("password", { required: "Password is required" })}
-        className="px-4 py-3 mt-4 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
-        placeholder="Password *"
-      />
-      <span className="text-sm text-left text-red-700">
+      <div className="form-outline mb-4">
+        <label className="form-label" htmlFor="password">
+          Password
+        </label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          data-testid="password"
+          {...register("password", { required: "Password is required" })}
+          className="form-control"
+          placeholder="Password *"
+        />
+      </div>
+      <span className="small text-left text-red-700">
         {errors.password?.message}
       </span>
 
-      <button>Next</button>
+      <button className="btn btn-primary btn-block mb-4">Next</button>
     </form>
   );
 };
