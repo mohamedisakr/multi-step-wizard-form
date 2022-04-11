@@ -7,15 +7,15 @@ import { choosePassword } from "../rootSlice";
 export const Step3 = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const cheese = useSelector((state) => state.cheese);
+  const password = useSelector((state) => state.password);
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: "onBlur", defaultValues: { cheese } });
+  } = useForm({ mode: "onBlur", defaultValues: { password } });
 
   const onSubmit = (data) => {
-    dispatch(choosePassword(data.cheese));
+    dispatch(choosePassword(data.password));
     navigate("/result");
   };
 
@@ -26,7 +26,7 @@ export const Step3 = () => {
         id="password"
         name="password"
         data-testid="password"
-        {...register("password")}
+        {...register("password", { required: "Password is required" })}
         className="px-4 py-3 mt-4 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
         placeholder="Password *"
       />
@@ -34,18 +34,6 @@ export const Step3 = () => {
         {errors.password?.message}
       </span>
 
-      <input
-        type="password"
-        id="passwordConfirmation"
-        name="passwordConfirmation"
-        data-testid="repeat"
-        {...register("passwordConfirmation")}
-        className="px-4 py-3 mt-4 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
-        placeholder="Re-enter password *"
-      />
-      <span className="text-sm text-left text-red-700">
-        {errors.passwordConfirmation?.message}
-      </span>
       <button>Next</button>
     </form>
   );
