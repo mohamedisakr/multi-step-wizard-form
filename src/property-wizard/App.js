@@ -10,8 +10,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<PropertyWizard />} />
-        {/* <Route exact path="/" element={<PropertyWizardEnhanced />} /> */}
+        {/* <Route exact path="/" element={<PropertyWizard />} /> */}
+        <Route exact path="/" element={<PropertyWizardEnhanced />} />
         <Route exact path="/flatstep" element={<FlatStep />} />
         <Route exact path="/plotstep" element={<PlotStep />} />
         <Route exact path="/estabstep" element={<EstabStep />} />

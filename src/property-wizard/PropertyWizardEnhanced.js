@@ -1,58 +1,49 @@
-import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { choosePropertyType } from "../propertyTypeSlice";
 
 const PropertyWizardEnhanced = () => {
-  const [selectedOption, setSelectedOption] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const propType = useSelector((state) => state.propType);
 
-  const { register, handleSubmit } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     mode: "onBlur",
-    defaultValues: {},
+    defaultValues: { propType },
   });
 
   // Flat, Plot, Estab
   const onSubmit = (data) => {
-    console.log(selectedOption);
-    // console.log(data.propType);
-    // dispatch(choosePropertyType(data.propType));
-    if (selectedOption === "Flat") {
-      dispatch(choosePropertyType(selectedOption));
+    console.log(data.propType);
+    if (data.propType === "Flat") {
+      dispatch(choosePropertyType(data.propType));
       navigate("/flatstep");
-    } else if (selectedOption === "Plot") {
-      dispatch(choosePropertyType(selectedOption));
+    } else if (data.propType === "Plot") {
+      dispatch(choosePropertyType(data.propType));
       navigate("/plotstep");
-    } else if (selectedOption === "Estab") {
-      dispatch(choosePropertyType(selectedOption));
+    } else if (data.propType === "Estab") {
+      dispatch(choosePropertyType(data.propType));
       navigate("/estabstep");
     }
   };
 
-  const onValueChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
-
-  const formSubmit = (event) => {
-    event.preventDefault();
-    console.log(selectedOption);
-  };
-
   return (
-    // <form onSubmit={formSubmit}>
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="radio">
         <label>
           <input
             type="radio"
             value="Flat"
-            name="propTypeOption"
-            checked={selectedOption === "Flat"}
-            onChange={onValueChange}
+            name="propType"
+            {...register("propType", {
+              required: "Property Type is required",
+            })}
           />
           Flat
         </label>
@@ -62,9 +53,10 @@ const PropertyWizardEnhanced = () => {
           <input
             type="radio"
             value="Plot"
-            name="propTypeOption"
-            checked={selectedOption === "Plot"}
-            onChange={onValueChange}
+            name="propType"
+            {...register("propType", {
+              required: "Property Type is required",
+            })}
           />
           Plot
         </label>
@@ -74,14 +66,18 @@ const PropertyWizardEnhanced = () => {
           <input
             type="radio"
             value="Estab"
-            name="propTypeOption"
-            checked={selectedOption === "Estab"}
-            onChange={onValueChange}
+            name="propType"
+            {...register("propType", {
+              required: "Property Type is required",
+            })}
           />
           Estab
         </label>
       </div>
-      <div>Selected option is : {selectedOption}</div>
+
+      <div className="text-sm text-left text-red-700">
+        {errors.propType?.message}
+      </div>
       <button className="btn btn-default">Next</button>
     </form>
   );
