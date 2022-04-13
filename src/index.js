@@ -7,16 +7,15 @@ import "bootstrap/dist/css/bootstrap.css";
 // import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { store } from "./store";
-import App from "./simple/App";
-import PropertyWizard from "./property-wizard/PropertyWizard";
+import App from "./property-wizard/App";
+// import App from "./simple/App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      {/* <App /> */}
-      <PropertyWizard />
+      <App />
     </Provider>
   </React.StrictMode>
 );
