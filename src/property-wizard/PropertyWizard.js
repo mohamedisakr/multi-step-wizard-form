@@ -1,7 +1,12 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 const PropertyWizard = () => {
   const [selectedOption, setSelectedOption] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onValueChange = (event) => {
     setSelectedOption(event.target.value);
@@ -49,7 +54,7 @@ const PropertyWizard = () => {
       </div>
       <div>Selected option is : {selectedOption}</div>
       <button className="btn btn-default" type="submit">
-        Submit
+        Next
       </button>
     </form>
   );
