@@ -2,11 +2,36 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { choosePropertyType } from "../propertyTypeSlice";
 
 const PropertyWizard = () => {
   const [selectedOption, setSelectedOption] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const propType = useSelector((state) => state.propType);
+
+  const { handleSubmit } = useForm({
+    mode: "onBlur",
+    defaultValues: {},
+  });
+
+  // Flat, Plot, Estab
+  const onSubmit = (data) => {
+    console.log(selectedOption);
+    // console.log(data.propType);
+    // dispatch(choosePropertyType(data.propType));
+    if (selectedOption === "Flat") {
+      dispatch(choosePropertyType(selectedOption));
+      navigate("/flatstep");
+    } else if (selectedOption === "Plot") {
+      dispatch(choosePropertyType(selectedOption));
+      navigate("/plotstep");
+    } else if (selectedOption === "Estab") {
+      dispatch(choosePropertyType(selectedOption));
+      navigate("/estabstep");
+    }
+  };
 
   const onValueChange = (event) => {
     setSelectedOption(event.target.value);
@@ -18,7 +43,8 @@ const PropertyWizard = () => {
   };
 
   return (
-    <form onSubmit={formSubmit}>
+    // <form onSubmit={formSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="radio">
         <label>
           <input
@@ -53,9 +79,7 @@ const PropertyWizard = () => {
         </label>
       </div>
       <div>Selected option is : {selectedOption}</div>
-      <button className="btn btn-default" type="submit">
-        Next
-      </button>
+      <button className="btn btn-default">Next</button>
     </form>
   );
 };
