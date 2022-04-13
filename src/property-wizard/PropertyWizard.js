@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-const RadioButtonsGroup = () => {
-  const [selectedOption, setSelectedOption] = useState();
+const PropertyWizard = () => {
+  const [selectedOption, setSelectedOption] = useState("");
 
   const onValueChange = (event) => {
     setSelectedOption(event.target.value);
@@ -18,33 +18,33 @@ const RadioButtonsGroup = () => {
         <label>
           <input
             type="radio"
-            value="Male"
-            checked={selectedOption === "Male"}
+            value="Flat"
+            checked={selectedOption === "Flat"}
             onChange={onValueChange}
           />
-          Male
+          Flat
         </label>
       </div>
       <div className="radio">
         <label>
           <input
             type="radio"
-            value="Female"
-            checked={selectedOption === "Female"}
+            value="Plot"
+            checked={selectedOption === "Plot"}
             onChange={onValueChange}
           />
-          Female
+          Plot
         </label>
       </div>
       <div className="radio">
         <label>
           <input
             type="radio"
-            value="Other"
-            checked={selectedOption === "Other"}
+            value="Estab"
+            checked={selectedOption === "Estab"}
             onChange={onValueChange}
           />
-          Other
+          Estab
         </label>
       </div>
       <div>Selected option is : {selectedOption}</div>
@@ -55,4 +55,4 @@ const RadioButtonsGroup = () => {
   );
 };
 
-export default RadioButtonsGroup;
+export default PropertyWizard;

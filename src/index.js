@@ -8,7 +8,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import App from "./simple/App";
-import RadioButtonsGroup from "./RadioButtonsGroup";
+import PropertyWizard from "./property-wizard/PropertyWizard";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -16,7 +16,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       {/* <App /> */}
-      <RadioButtonsGroup />
+      <PropertyWizard />
     </Provider>
   </React.StrictMode>
 );
