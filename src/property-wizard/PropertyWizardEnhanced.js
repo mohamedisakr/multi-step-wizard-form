@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { choosePropertyType } from "../propertyTypeSlice";
+import { choosePropertyName, choosePropertyType } from "../propertyTypeSlice";
 
 const PropertyWizardEnhanced = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const propType = useSelector((state) => state.propType);
+  const propName = useSelector((state) => state.propName);
 
   const {
     register,
@@ -15,12 +16,14 @@ const PropertyWizardEnhanced = () => {
     formState: { errors },
   } = useForm({
     mode: "onBlur",
-    defaultValues: { propType },
+    defaultValues: { propName, propType },
   });
 
   // Flat, Plot, Estab
   const onSubmit = (data) => {
     console.log(data.propType);
+    console.log(data.propName);
+    dispatch(choosePropertyName(data.propName));
     if (data.propType === "Flat") {
       dispatch(choosePropertyType(data.propType));
       navigate("/flatstep");
@@ -35,6 +38,24 @@ const PropertyWizardEnhanced = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="form-outline mb-4">
+        <label className="form-label" htmlFor="firstName">
+          Enter Property Name
+        </label>
+        <input
+          type="text"
+          id="propName"
+          name="propName"
+          {...register("propName", {
+            required: "Property name is required",
+          })}
+          className="form-control"
+          placeholder="Property Name *"
+        />
+      </div>
+      <div className="text-sm text-left text-red-700">
+        {errors.propName?.message}
+      </div>
       <div className="radio">
         <label>
           <input
