@@ -10,6 +10,7 @@ const FlatStep = () => {
 
   const roomConfig = useSelector((state) => state.roomConfig);
   const floorNumber = useSelector((state) => state.floorNumber);
+  const facingType = useSelector((state) => state.facingType);
 
   const {
     register,
@@ -17,13 +18,14 @@ const FlatStep = () => {
     formState: { errors },
   } = useForm({
     mode: "onBlur",
-    defaultValues: { roomConfig, floorNumber },
+    defaultValues: { roomConfig, floorNumber, facingType },
   });
 
   // Flat, Plot, Estab
   const onSubmit = (data) => {
     console.log(data.roomConfig);
     console.log(data.floorNumber);
+    console.log(data.facingType);
     // console.log(data.propName);
     // dispatch(choosePropertyName(data.propName));
     // if (data.propType === "Flat") {
@@ -119,6 +121,40 @@ const FlatStep = () => {
           {errors.floorNumber?.message}
         </span>
         <div className="form-group row">
+          {/* Select Facing Type */}
+          <select
+            id="facingType"
+            name="facingType"
+            {...register("facingType", {
+              required: "Facing Type is required",
+            })}
+          >
+            <option value="North">North</option>
+            <option value="North-East">North East</option>
+            <option value="East">East</option>
+            <option value="South-East">South East</option>
+            <option value="South">South</option>
+            <option value="South-West">South West</option>
+            <option value="West">West</option>
+            <option value="North-West">North West</option>
+          </select>
+        </div>
+        <span className="text-sm text-left text-red-700">
+          {errors.facingType?.message}
+        </span>
+        <div className="form-group row">
+          <div className="col-sm-10">
+            <button className="btn btn-primary">Next</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default FlatStep;
+/*
+ <div className="form-group row">
           <label for="inputPassword3" className="col-sm-2 col-form-label">
             Password
           </label>
@@ -145,15 +181,4 @@ const FlatStep = () => {
               </label>
             </div>
           </div>
-        </div>
-        <div className="form-group row">
-          <div className="col-sm-10">
-            <button className="btn btn-primary">Next</button>
-          </div>
-        </div>
-      </form>
-    </div>
-  );
-};
-
-export default FlatStep;
+        </div> */
