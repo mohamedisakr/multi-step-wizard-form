@@ -9,6 +9,7 @@ const propertyTypeSlice = createSlice({
     floorNumber: "",
     facingType: "", // North, North-East, East, South-East, South, South-West, West, North-West
     builtupArea: "",
+    rentOrSale: "Rent", // Rent, Sale
   },
   reducers: {
     choosePropertyName: (state, action) => {
@@ -28,6 +29,9 @@ const propertyTypeSlice = createSlice({
     },
     chooseBuiltupArea: (state, action) => {
       state.builtupArea = action.payload;
+    },
+    chooseRentOrSale: (state, action) => {
+      state.rentOrSale = action.payload;
     },
   },
 });

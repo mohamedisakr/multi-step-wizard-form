@@ -12,6 +12,7 @@ const FlatStep = () => {
   const floorNumber = useSelector((state) => state.floorNumber);
   const facingType = useSelector((state) => state.facingType);
   const builtupArea = useSelector((state) => state.builtupArea);
+  const rentOrSale = useSelector((state) => state.rentOrSale);
 
   const {
     register,
@@ -19,7 +20,13 @@ const FlatStep = () => {
     formState: { errors },
   } = useForm({
     mode: "onBlur",
-    defaultValues: { roomConfig, floorNumber, facingType, builtupArea },
+    defaultValues: {
+      roomConfig,
+      floorNumber,
+      facingType,
+      builtupArea,
+      rentOrSale,
+    },
   });
 
   // Flat, Plot, Estab
@@ -28,6 +35,7 @@ const FlatStep = () => {
     console.log(data.floorNumber);
     console.log(data.facingType);
     console.log(data.builtupArea);
+    console.log(data.rentOrSale);
     // console.log(data.propName);
     // dispatch(choosePropertyName(data.propName));
     // if (data.propType === "Flat") {
@@ -163,6 +171,48 @@ const FlatStep = () => {
         <span className="text-sm text-left text-red-700">
           {errors.builtupArea?.message}
         </span>
+        <fieldset className="form-group">
+          <div className="row">
+            <legend className="col-form-label col-sm-2 pt-0">
+              Select Rent / Sale
+            </legend>
+            <div className="col-sm-10">
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="rentOrSale"
+                  id="rent"
+                  value="Rent"
+                  {...register("rentOrSale", {
+                    required: "Choose Rent or Sale",
+                  })}
+                ></input>
+                <label className="form-check-label" for="rent">
+                  Rent
+                </label>
+              </div>
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="rentOrSale"
+                  id="sale"
+                  value="Sale"
+                  {...register("rentOrSale", {
+                    required: "Choose Rent or Sale",
+                  })}
+                ></input>
+                <label className="form-check-label" for="sale">
+                  Sale
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <div className="text-sm text-left text-red-700">
+          {errors.rentOrSale?.message}
+        </div>
         <div className="form-group row">
           <div className="col-sm-10">
             <button className="btn btn-primary">Next</button>
