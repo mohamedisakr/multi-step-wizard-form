@@ -9,7 +9,7 @@ const FlatStep = () => {
   const navigate = useNavigate();
 
   const roomConfig = useSelector((state) => state.roomConfig);
-  // const propName = useSelector((state) => state.propName);
+  const floorNumber = useSelector((state) => state.floorNumber);
 
   const {
     register,
@@ -17,12 +17,13 @@ const FlatStep = () => {
     formState: { errors },
   } = useForm({
     mode: "onBlur",
-    defaultValues: { roomConfig },
+    defaultValues: { roomConfig, floorNumber },
   });
 
   // Flat, Plot, Estab
   const onSubmit = (data) => {
     console.log(data.roomConfig);
+    console.log(data.floorNumber);
     // console.log(data.propName);
     // dispatch(choosePropertyName(data.propName));
     // if (data.propType === "Flat") {
@@ -99,18 +100,24 @@ const FlatStep = () => {
           {errors.roomConfig?.message}
         </div>
         <div className="form-group row">
-          <label for="inputEmail3" className="col-sm-2 col-form-label">
-            Email
+          <label for="floorNumber" className="col-sm-2 col-form-label">
+            Enter Floor Number:
           </label>
           <div className="col-sm-10">
             <input
-              type="email"
+              type="text"
               className="form-control"
-              id="inputEmail3"
-              placeholder="Email"
+              id="floorNumber"
+              placeholder="Floor Number"
+              {...register("floorNumber", {
+                required: "Floor Number is required",
+              })}
             ></input>
           </div>
         </div>
+        <span className="text-sm text-left text-red-700">
+          {errors.floorNumber?.message}
+        </span>
         <div className="form-group row">
           <label for="inputPassword3" className="col-sm-2 col-form-label">
             Password
