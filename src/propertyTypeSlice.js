@@ -5,6 +5,7 @@ const propertyTypeSlice = createSlice({
   initialState: {
     propName: "",
     propType: "Flat", // Flat, Plot, Estab
+    roomConfig: "1BHK", // 1BHK, 2BHK, 3BHK
   },
   reducers: {
     choosePropertyName: (state, action) => {
@@ -13,10 +14,13 @@ const propertyTypeSlice = createSlice({
     choosePropertyType: (state, action) => {
       state.propType = action.payload;
     },
+    chooseRoomConfig: (state, action) => {
+      state.roomConfig = action.payload;
+    },
   },
 });
 
 export const propertyTypeReducer = propertyTypeSlice.reducer;
 
-export const { choosePropertyName, choosePropertyType } =
+export const { choosePropertyName, choosePropertyType, chooseRoomConfig } =
   propertyTypeSlice.actions;
