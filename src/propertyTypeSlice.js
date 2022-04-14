@@ -8,6 +8,7 @@ const propertyTypeSlice = createSlice({
     roomConfig: "1BHK", // 1BHK, 2BHK, 3BHK
     floorNumber: "",
     facingType: "", // North, North-East, East, South-East, South, South-West, West, North-West
+    builtupArea: "",
   },
   reducers: {
     choosePropertyName: (state, action) => {
@@ -24,6 +25,9 @@ const propertyTypeSlice = createSlice({
     },
     chooseFacingType: (state, action) => {
       state.facingType = action.payload;
+    },
+    chooseBuiltupArea: (state, action) => {
+      state.builtupArea = action.payload;
     },
   },
 });

@@ -11,6 +11,7 @@ const FlatStep = () => {
   const roomConfig = useSelector((state) => state.roomConfig);
   const floorNumber = useSelector((state) => state.floorNumber);
   const facingType = useSelector((state) => state.facingType);
+  const builtupArea = useSelector((state) => state.builtupArea);
 
   const {
     register,
@@ -18,7 +19,7 @@ const FlatStep = () => {
     formState: { errors },
   } = useForm({
     mode: "onBlur",
-    defaultValues: { roomConfig, floorNumber, facingType },
+    defaultValues: { roomConfig, floorNumber, facingType, builtupArea },
   });
 
   // Flat, Plot, Estab
@@ -26,6 +27,7 @@ const FlatStep = () => {
     console.log(data.roomConfig);
     console.log(data.floorNumber);
     console.log(data.facingType);
+    console.log(data.builtupArea);
     // console.log(data.propName);
     // dispatch(choosePropertyName(data.propName));
     // if (data.propType === "Flat") {
@@ -141,6 +143,25 @@ const FlatStep = () => {
         </div>
         <span className="text-sm text-left text-red-700">
           {errors.facingType?.message}
+        </span>
+        <div className="form-group row">
+          <label for="builtupArea" className="col-sm-2 col-form-label">
+            Enter Builtup Area:
+          </label>
+          <div className="col-sm-10">
+            <input
+              type="text"
+              className="form-control"
+              id="builtupArea"
+              placeholder="Builtup Area"
+              {...register("builtupArea", {
+                required: "Builtup Area is required",
+              })}
+            ></input>
+          </div>
+        </div>
+        <span className="text-sm text-left text-red-700">
+          {errors.builtupArea?.message}
         </span>
         <div className="form-group row">
           <div className="col-sm-10">
